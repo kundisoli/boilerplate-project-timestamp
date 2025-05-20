@@ -1,32 +1,171 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A timestamp conversion microservice">
+  <title>Timestamp Microservice</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --bg-color: #f8fafc;
+      --card-color: #ffffff;
+      --text-color: #1e293b;
+      --code-bg: #f1f5f9;
+      --example-bg: #e2e8f0;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
 
-<html>
-   <head>
-      <title>Timestamp Microservice | freeCodeCamp.org</title>
-      <link rel="shortcut icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png" type="image/x-icon"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="style.css" rel="stylesheet" type="text/css">
-   </head>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
 
-   <body>
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .container {
+      background-color: var(--card-color);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    .example {
+      background-color: var(--example-bg);
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      margin: 1.25rem 0;
+    }
+
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: var(--code-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    pre code {
+      display: block;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #64748b;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
     <h1>Timestamp Microservice</h1>
-    <hr />
-    <div class="container">
-      <h2>Example Usage:</h2>
+    <p>Convert between Unix timestamps and UTC dates</p>
+  </header>
+  
+  <main>
+    <section class="container">
+      <h2>API Usage</h2>
+      
+      <div class="example">
+        <code>GET /api/&lt;date&gt;</code>
+      </div>
+      
+      <p>The date parameter can be:</p>
       <ul>
-        <li><a href="api/2015-12-25">[project url]/api/2015-12-25</a></li>
-        <li><a href="api/1451001600000">[project url]/api/1451001600000</a></li>
+        <li>A valid date string (e.g., <code>"2023-07-15"</code>)</li>
+        <li>A Unix timestamp in milliseconds (e.g., <code>1689379200000</code>)</li>
+        <li>Empty to return the current time</li>
       </ul>
+    </section>
 
-      <h2>Example Output:</h2>
-      <p>
-        <code>{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</code>
-      </p>
-    </div>
-    <div class="footer">
-      <p>
-        By <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a>
-      </p>
-    </div>
-  </body>
+    <section class="container">
+      <h2>Example API Responses</h2>
+      
+      <article class="example">
+        <h3>Valid Date String</h3>
+        <p><code>GET /api/2015-12-25</code></p>
+        <pre><code>{
+  "unix": 1451001600000,
+  "utc": "Fri, 25 Dec 2015 00:00:00 GMT"
+}</code></pre>
+      </article>
+      
+      <article class="example">
+        <h3>Unix Timestamp</h3>
+        <p><code>GET /api/1451001600000</code></p>
+        <pre><code>{
+  "unix": 1451001600000,
+  "utc": "Fri, 25 Dec 2015 00:00:00 GMT"
+}</code></pre>
+      </article>
+      
+      <article class="example">
+        <h3>Invalid Date</h3>
+        <p><code>GET /api/invalid-date</code></p>
+        <pre><code>{
+  "error": "Invalid Date"
+}</code></pre>
+      </article>
+    </section>
+  </main>
+  
+  <footer>
+    <p>Created by <a href="/" aria-label="Creator's name">Lisa Chimunhu</a></p>
+  </footer>
+</body>
 </html>
